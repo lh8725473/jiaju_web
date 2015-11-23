@@ -1,0 +1,16 @@
+// @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+//@import "test2.scss";
+.header{
+	.logo{
+		margin:0;
+		text-align: center;
+		color:#fff;
+		font-weight: normal;
+		i{
+			position: absolute;
+			left:20px;
+			top:0;
+			font-size: 150px;
+		}
+	}
+}
