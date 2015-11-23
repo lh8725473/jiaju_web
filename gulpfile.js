@@ -7,8 +7,9 @@
 	var concat = require('gulp-concat');
 	var jsMin = require('gulp-jsmin');
 	var sourceMaps = require('gulp-sourcemaps');
-	var jsBuildPath = './public/js'; //实际调用JS的目录
-	var cssBuildPath = './public/css'; //实际调用css的目录
+	var cssBuildPath = './compile/css'; //编译完成css的目录
+	var jsBuildPath = './devSrc/js'; //实际调用JS的目录
+	var cssBuildPath = './devSrc/css'; //实际调用css的目录
 	var libPath = './bower_components';
 
 	gulp.task('default', function() {
@@ -28,7 +29,7 @@
 	gulp.task('sass', function() {
 		gulp.src('./src/**/*.scss')
 			.pipe(sass().on('error', sass.logError))
-			.pipe(gulp.dest('./publish/css'))
+			.pipe(gulp.dest('./compile/css'))
 			.pipe(concat('main.css'))
 			.pipe(gulp.dest(cssBuildPath));
 	});
