@@ -1,1 +1,5 @@
-test.js
+console.log('aaa')
+
+function aaa(){
+	console.log('aaa')
+}

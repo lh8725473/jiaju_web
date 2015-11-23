@@ -1,4 +1,3 @@
 bower_components/
 node_modules/
-compile/
-devSrc/
+dev_src/

@@ -20,6 +20,8 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.5",
-    "bootstrap-sass": "~3.3.5"
+    "bootstrap-sass": "~3.3.5",
+    "jquery": "~2.1.4",
+    "requirejs": "~2.1.20"
   }
 }
