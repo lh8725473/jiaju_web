@@ -6,11 +6,13 @@
 	var csso = require('gulp-csso');
 	var concat = require('gulp-concat');
 	var replace = require('gulp-replace-task');
+	var useref = require('gulp-useref');
 	var jsMin = require('gulp-jsmin');
+	var gulpsync = require('gulp-sync')(gulp);
 	var sourceMaps = require('gulp-sourcemaps');
 	var cssBuildPath = './compile/css'; //编译完成css的目录
-	var jsBuildPath = './dev_src/js'; //实际调用JS的目录
-	var cssBuildPath = './dev_src/css'; //实际调用css的目录
+	var jsBuildPath = './dev_src'; //实际调用JS的目录
+	var cssBuildPath = './dev_src'; //实际调用css的目录
 	var libPath = './bower_components';
 
 	gulp.task('default', function() {
@@ -28,15 +30,15 @@
 	});
 
 	gulp.task('sass', function() {
-		gulp.src('./src/**/*.scss')
+		return gulp.src('./src/**/*.scss')
 			.pipe(sass().on('error', sass.logError))
-			.pipe(concat('main.css'))
+			//.pipe(concat('main.css'))
 			.pipe(gulp.dest(cssBuildPath));
 	});
 
 	gulp.task('concatjs', function() {
-		gulp.src('./src/**/*.js')
-			.pipe(concat('main.js'))
+		return gulp.src('./src/**/*.js')
+			//.pipe(concat('main.js'))
 			.pipe(gulp.dest(jsBuildPath));
 	});
 
@@ -60,9 +62,16 @@
 
 	gulp.task('dev', ['sass', 'concatjs', 'replace', 'watch']);
 
-	gulp.task('jade', function() {
+	gulp.task('useref',['sass', 'concatjs', 'ref']);
 
+
+
+	gulp.task('ref', function() {
+		return gulp.src('src/*.html')
+      .pipe(useref())
+      .pipe(gulp.dest('dev_src'));
 	});
+
 	gulp.task('cf', function() {
 		gulp.src("assets/coffee/**/*.coffee")
 			.pipe(coffee())
